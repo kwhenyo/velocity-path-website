@@ -347,12 +347,35 @@
   <section class="cta" id="contact">
     <h2>Ready To Run More Loaded Miles?</h2>
     <p>Tell us your truck type and home base — we'll reach out within one business day with lanes that fit.</p>
-    <form class="cta-form" onsubmit="return false;">
-      <input type="text" placeholder="Name" required>
-      <input type="tel" placeholder="Phone number" required>
+    <form class="cta-form" id="contact-form" action="https://formspree.io/f/mrpgagey" method="POST">
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="tel" name="phone" placeholder="Phone number" required>
       <button type="submit" class="btn">Request A Call</button>
     </form>
+    <p id="form-success" style="display:none; margin-top:18px; color:var(--amber); font-family:'IBM Plex Mono',monospace; font-size:13px;">Thanks — we'll be in touch within one business day.</p>
   </section>
+
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          form.style.display = 'none';
+          document.getElementById('form-success').style.display = 'block';
+        } else {
+          alert('Something went wrong — please try again or call us directly.');
+        }
+      }).catch(() => {
+        alert('Something went wrong — please try again or call us directly.');
+      });
+    });
+  </script>
 
   <footer>
     <div class="brand">
