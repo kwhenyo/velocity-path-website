@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://velocity-path-website.kwhenyo.workers.dev/sitemap.xml
+Sitemap: https://velocitypathservices.com/sitemap.xml
